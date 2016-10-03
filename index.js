@@ -8,8 +8,8 @@ const serviceProtocol = `https`;
 const serviceHost = `morar.ft.com`;
 
 const opts = {
-	token : undefined,
-	name : undefined
+	token : process.env.MORAR_TOKEN || undefined,
+	name : process.env.MORAR_NAME || undefined
 };
 
 function storeData(data, params){
@@ -39,11 +39,11 @@ function setConfigurationOptions(options){
 	});
 
 	if(opts.name === undefined){
-		throw "You must pass a 'name' value when you configure the Morar client";
+		throw `You must pass a 'name' value when you configure the Morar client. You can also set the environment variable MORAR_NAME.`;
 	}
 
 	if(opts.token === undefined){
-		throw "You must pass a 'token' value when you configure the Morar client";
+		throw `You must pass a 'token' value when you configure the Morar client. You can also set the environment variable MORAR_TOKEN.`;
 	}
 
 	return storeData;
