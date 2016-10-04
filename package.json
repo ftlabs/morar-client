@@ -2,7 +2,7 @@
   "name": "morar-client",
   "version": "0.1.0",
   "description": "A module for interacting with morar.ft.com",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "build" : "babel index.js -o ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
