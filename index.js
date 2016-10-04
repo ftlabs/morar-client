@@ -84,7 +84,7 @@ function storeData(data, params){
 
 			res.on('end', () => {
 				debug(b);
-				resolve(JSON.parse(b) );
+				resolve(JSON.parse(b));
 			});
 
 		});
@@ -109,6 +109,8 @@ function setConfigurationOptions(options){
 			opts[key] = options[key];
 		});
 	}
+
+	debug(opts);
 
 	if(opts.name === undefined){
 		throw `You must pass a 'name' value when you configure the Morar client. You can also set the environment variable MORAR_NAME.`;
