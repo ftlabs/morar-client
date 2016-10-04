@@ -25,18 +25,39 @@ function storeData(data, params){
 			queryParams += `&${key}=${params[key]}`;
 		});
 
+	} else if(data === undefined){
+		throw "No parameters or data was passed";
 	}
 
 	debug(`Passed values:`);
 	debug(queryParams, requestBody);
+	debug(typeof data);
 
 	const form = new FormData();
 
 	if(requestBody !== undefined && requestBody !== ''){
 
+		// It's a string, so we save it as a text file
 		if(typeof(data) === 'string'){
 			debug('Body is String');
 			form.append('data', requestBody);
+		}
+
+		if(typeof(data) === 'object'){
+
+			try{
+				form.append('data', JSON.stringify(requestBody));
+			} catch (err) {
+				debug(err);
+				throw "Object passed was not JSON";
+			}
+
+		}
+
+		// It's a readable stream, so we'll save it as a binary file
+		if(typeof data.on === 'function'){
+			debug('Body is Buffer');
+			form.append('f', data);
 		}
 
 	}
