@@ -4,6 +4,7 @@
   "description": "A module for interacting with morar.ft.com",
   "main": "index.js",
   "scripts": {
+    "build" : "babel index.js -o ./main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +26,10 @@
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
     "form-data": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-latest": "^6.16.0"
   }
 }
