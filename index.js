@@ -22,7 +22,7 @@ function storeData(data, params){
 	if(params !== undefined){
 
 		Object.keys(params).forEach(key => {
-			queryParams += `&${key}=${params[key]}`;
+			queryParams += `&${key}=${encodeURIComponent(params[key])}`;
 		});
 
 	} else if(data === undefined){
@@ -67,7 +67,7 @@ function storeData(data, params){
 		const request = requestProtocol.request({
 			method: 'POST',
 			host: serviceHost,
-			path: `/store?name=${opts.name}&token=${opts.token}${queryParams}`,
+			path: `/store?name=${ encodeURIComponent(opts.name)}&token=${opts.token}${queryParams}`,
 			headers: form.getHeaders(),
 			port : 443
 		});
@@ -96,7 +96,6 @@ function storeData(data, params){
 		form.pipe(request);
 
 	} );
-
 
 }
 
