@@ -74,6 +74,7 @@ function storeData(data, params){
 
 		request.on('response', function(res) {
 
+			debug(res.statusCode);
 			res.setEncoding('utf8');
 
 			var b = "";
@@ -84,7 +85,13 @@ function storeData(data, params){
 
 			res.on('end', () => {
 				debug(b);
-				resolve(JSON.parse(b));
+
+				if(res.statusCode !== 200){
+					reject(b);
+				} else {
+					resolve(JSON.parse(b));
+				}
+
 			});
 
 		});
