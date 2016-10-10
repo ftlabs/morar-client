@@ -87,7 +87,7 @@ function storeData(data, params){
 				debug(b);
 
 				if(res.statusCode !== 200){
-					reject(b);
+					reject(JSON.parse(b));
 				} else {
 					resolve(JSON.parse(b));
 				}

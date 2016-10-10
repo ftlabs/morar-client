@@ -1,6 +1,6 @@
 {
   "name": "morar-client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A module for interacting with morar.ft.com",
   "main": "main.js",
   "scripts": {
