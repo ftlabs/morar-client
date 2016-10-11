@@ -87,7 +87,15 @@ function storeData(data, params){
 				debug(b);
 
 				if(res.statusCode !== 200){
-					reject(JSON.parse(b));
+					try{
+						reject(JSON.parse(b));
+					} catch(err){
+						reject({
+							status : 'error',
+							reason : 'morar-client was unable to parse the response from Morar service',
+							details : [err, b]
+						});
+					}
 				} else {
 					resolve(JSON.parse(b));
 				}
