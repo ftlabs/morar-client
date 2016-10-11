@@ -14,7 +14,21 @@ const opts = {
 	name : process.env.MORAR_NAME || undefined
 };
 
+function checkValuesAreSet(){
+	
+	if( (opts.name === undefined || opts.name === '') ){
+		throw `You must pass a 'name' value when you configure the Morar client. You can also set the environment variable MORAR_NAME.`;
+	}
+
+	if( (opts.token === undefined || opts.token === '') ){
+		throw `You must pass a 'token' value when you configure the Morar client. You can also set the environment variable MORAR_TOKEN.`;
+	}
+
+}
+
 function storeData(data, params){
+
+	checkValuesAreSet();
 
 	let requestBody = data;
 	let queryParams = '';
@@ -126,13 +140,7 @@ function setConfigurationOptions(options){
 
 	debug(opts);
 
-	if(opts.name === undefined){
-		throw `You must pass a 'name' value when you configure the Morar client. You can also set the environment variable MORAR_NAME.`;
-	}
-
-	if(opts.token === undefined){
-		throw `You must pass a 'token' value when you configure the Morar client. You can also set the environment variable MORAR_TOKEN.`;
-	}
+	checkValuesAreSet();
 
 	return storeData;
 
